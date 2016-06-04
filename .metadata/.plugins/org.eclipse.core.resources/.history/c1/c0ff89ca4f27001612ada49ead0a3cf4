@@ -1,0 +1,42 @@
+package Main;
+
+import java.awt.Graphics;
+
+public class Segmento {
+	Punto a;
+	Punto b;
+	
+	public Segmento(Punto a, Punto b){
+		this.a=a;
+		this.b=b;
+	}
+	
+	public void dibujar(Graphics g){
+		g.drawLine((int)a.x,(int)a.y,(int)b.x,(int)b.y);
+	}
+	public Punto getPuntoCorte (Segmento s){
+		float m1 = (a.y-b.y)/(a.x-b.x);
+		float m2 = (s.a.y-s.b.y)/(s.a.x-s.b.x);
+		float n1;
+		float n2;
+		if (m1==0){
+			n1 = a.y;
+			System.out.println(n1);
+		}else{
+			n1 = a.x-(a.y/m1);
+			System.out.println(n1);
+		}
+		if (m2==0){
+			n2 = s.a.y;
+			System.out.println(n2);
+		}else{
+			n2 = s.a.x-(s.a.y/m2);
+			System.out.println(n2);
+		}
+		
+		float x = (n1-n2)/(m2-m1);
+		float y = n1+m1*x;
+		
+		return new Punto(x,y);
+	}
+}

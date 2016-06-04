@@ -1,0 +1,17 @@
+package Main;
+
+import java.awt.Graphics;
+
+public class Segmento {
+	Punto a;
+	Punto b;
+	
+	public Segmento(Punto a, Punto b){
+		this.a=a;
+		this.b=b;
+	}
+	
+	public void dibujar(Graphics g){
+		g.drawLine((int)a.x,(int)a.y,(int)b.x,(int)b.y);
+	}
+}

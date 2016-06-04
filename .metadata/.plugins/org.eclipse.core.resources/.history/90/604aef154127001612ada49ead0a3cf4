@@ -1,0 +1,68 @@
+package Main;
+
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JPanel;
+
+public class Panel extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
+	Ventana ventana;
+	Segmento s1 = new Segmento(new Punto(50,50), new Punto(600,200));
+	Segmento s2 = new Segmento(new Punto(300,10), new Punto(20,500));
+	public boolean suj1a = false;
+	public boolean suj1b = false;
+	public boolean suj2a = false;
+	public boolean suj2b = false;
+	
+	public Panel(Ventana v) {
+		ventana=v;
+		
+		addMouseListener(new MouseAdapter(){
+			public void mouseClicked (MouseEvent e){
+				System.out.println("inicia");
+				if(e.getButton()== MouseEvent.BUTTON1){
+					
+					if (e.getX()<s1.a.x+7 && e.getX()>s1.a.x-7 && e.getY()<s1.a.y+7 && e.getY()>s1.a.y-7){
+						
+						suj1a = true;		
+						//s1.a.x=e.getX();
+						//s1.a.y=e.getY();
+					}
+				};
+			}
+			public void mouseReleased (MouseEvent e){
+				if(e.getButton()== MouseEvent.BUTTON1){
+					suj1a = false;
+					suj1b = false;
+					suj2a = false;
+					suj2b = false;
+					System.out.println("para");
+				};
+			}
+		});
+		addMouseMotionListener(new MouseAdapter(){
+			public void mouseDragged (MouseEvent e){
+				if (suj1a){
+					System.out.println("fu7nciona");
+					s1.a.x=e.getX();
+					s1.a.y=e.getY();	
+				}
+			}
+		});
+	}
+	
+	@Override 
+	public void paint(Graphics g){
+		super.paint(g);
+		
+		s1.dibujar(g);
+		g.drawRect((int)s1.a.x-7, (int)s1.a.y-7, 14, 14);
+		//s2.dibujar(g);
+		
+		repaint();
+	}
+
+}
