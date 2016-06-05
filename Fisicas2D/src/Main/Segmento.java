@@ -22,7 +22,7 @@ public class Segmento {
 		float B2= s.a.x-s.b.x;
 		float C1= b.x*a.y-a.x*b.y;
 		float C2= s.b.x*s.a.y-s.a.x*s.b.y;
-		
+
 		float x= (B1*C2-B2*C1)/(A1*B2-A2*B1);
 		float y= (A2*C1-A1*C2)/(A1*B2-A2*B1);
 		
@@ -33,4 +33,6 @@ public class Segmento {
 		}
 		
 	}
+
 }
+

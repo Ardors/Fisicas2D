@@ -10,8 +10,11 @@ public class Panel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	Ventana ventana;
-	Segmento s1 = new Segmento(new Punto(100,100), new Punto(600,300));
-	Segmento s2 = new Segmento(new Punto(100,200), new Punto(600,200));
+	Segmento s1 = new Segmento(new Punto(200,300), new Punto(600,100));
+	Segmento s2 = new Segmento(new Punto(200,100), new Punto(100,100));
+	
+	Punto p = new Punto(100,100,new Vector(0.1f,0.1f));
+	
 	public boolean suj1a = false;
 	public boolean suj1b = false;
 	public boolean suj2a = false;
@@ -76,13 +79,25 @@ public class Panel extends JPanel {
 		g.drawRect((int)s1.a.x-7, (int)s1.a.y-7, 14, 14);
 		g.drawRect((int)s1.b.x-7, (int)s1.b.y-7, 14, 14);
 		
+		g.drawOval((int)(p.x-7), (int)(p.y-7), 14, 14);
+		p.mover();
+		p.reflejar(s1);
+		
+		
+		
+		/*s1.dibujar(g);
+		g.drawRect((int)s1.a.x-7, (int)s1.a.y-7, 14, 14);
+		g.drawRect((int)s1.b.x-7, (int)s1.b.y-7, 14, 14);
+		
 		s2.dibujar(g);
 		g.drawRect((int)s2.a.x-7, (int)s2.a.y-7, 14, 14);
 		g.drawRect((int)s2.b.x-7, (int)s2.b.y-7, 14, 14);
 		
 		if (s1.getPuntoCorte(s2)!=null){
 			g.drawOval((int)(s1.getPuntoCorte(s2).x-7), (int)(s1.getPuntoCorte(s2).y-7), 14, 14);
-		}	
+		}*/
+		
+		
 		
 		repaint();
 	}
