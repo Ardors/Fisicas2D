@@ -7,32 +7,30 @@ public class Segmento {
 	Punto b;
 	
 	public Segmento(Punto a, Punto b){
-		this.a=a;
-		this.b=b;
+		this.a= a;
+		this.b= b;
 	}
 	
 	public void dibujar(Graphics g){
 		g.drawLine((int)a.x,(int)a.y,(int)b.x,(int)b.y);
 	}
+	
 	public Punto getPuntoCorte (Segmento s){
-		float m1 = (a.y-b.y)/(a.x-b.x);
-		float m2 = (s.a.y-s.b.y)/(s.a.x-s.b.x);
-		float n1 = a.y-a.x*m1;
-		float n2 = s.a.y-s.a.x*m2;
+		float A1= b.y-a.y;
+		float A2= s.b.y-s.a.y;
+		float B1= a.x-b.x;
+		float B2= s.a.x-s.b.x;
+		float C1= b.x*a.y-a.x*b.y;
+		float C2= s.b.x*s.a.y-s.a.x*s.b.y;
 		
-		float x = (n1-n2)/(m2-m1);;
-		if (0==(a.x-b.x)){
-			x = a.x;
-		}
-		if (0==(s.a.x-s.b.x)){
-			x = s.a.x;
-		}
-		float y = n1+m1*x;
+		float x= (B1*C2-B2*C1)/(A1*B2-A2*B1);
+		float y= (A2*C1-A1*C2)/(A1*B2-A2*B1);
 		
-		if (x >= Math.min(a.x, b.x) && x >= Math.min(s.a.x, s.b.x) && x <= Math.max(a.x, b.x) && x <= Math.max(s.a.x, s.b.x) &&
-			y >= Math.min(a.y, b.y) && y >= Math.min(s.a.y, s.b.y) && y <= Math.max(a.y, b.y) && y <= Math.max(s.a.y, s.b.y)){
-				return new Punto(x,y);
+		if(x>Math.max(Math.min(a.x, b.x), Math.min(s.a.x, s.b.x)) && x<Math.min(Math.max(a.x, b.x), Math.max(s.a.x, s.b.x))){
+			return new Punto(x,y);
+		}else{
+			return null;
 		}
-		return null;
+		
 	}
 }
