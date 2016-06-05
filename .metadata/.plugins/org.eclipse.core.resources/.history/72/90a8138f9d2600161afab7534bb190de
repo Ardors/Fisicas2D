@@ -1,7 +1,0 @@
-package Main;
-
-import java.awt.Container;
-
-public class Panel extends Container {
-
-}
