@@ -36,12 +36,17 @@ public class Punto {
 		Punto pc = s.getPuntoCorte(new Segmento(new Punto(x,y),new Punto(x+v.x,y+v.y)));
 		
 		if(pc!=null){
-			float sang = (float) Math.atan2(s.a.y-s.b.y, s.a.x-s.b.x);
-			float vang = (float) Math.atan2(v.y, v.x);
-			float dang = vang-sang;
-			rotar(pc,2*dang);
-			System.out.println(sang);
+			
+			Vector vr = new Vector (v.x-pc.x,v.y-pc.y);
+			float vang = (float) Math.atan2(vr.y, vr.x);
+			float sang = (float) (Math.atan2(s.a.y-s.b.y, s.a.x-s.b.x));
+			float dang = (vang-sang)*2;
+			
+			v = vr.rotar(dang);
+			x = pc.x+v.x;
+			y = pc.y+v.y;
+		}else{
+			System.out.println("error 1");
 		}
-
 	}
 }
